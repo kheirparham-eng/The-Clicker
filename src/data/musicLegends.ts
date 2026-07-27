@@ -1,0 +1,276 @@
+export interface MasterComposer {
+  id: string;
+  name: string;
+  era: string; // e.g. "Baroque Master", "Romantic Virtuoso", "Rock Legend"
+  cost: number;
+  iconName: string;
+  multiplierType: 'pps' | 'ppc' | 'global' | 'crit' | 'golden';
+  multiplierValue: number; // e.g. 0.50 for +50%
+  description: string;
+  quote: string;
+  avatarBg: string;
+  imageUrl?: string;
+}
+
+export const MASTER_COMPOSERS: MasterComposer[] = [
+  {
+    id: 'comp_bach',
+    name: 'Johann Sebastian Bach',
+    era: 'Baroque Master',
+    cost: 500000,
+    iconName: 'Award',
+    multiplierType: 'pps',
+    multiplierValue: 0.50,
+    description: "Bach's Polyphonic Precision grants +50% Points Per Second!",
+    quote: 'To send light into the darkness of men’s hearts – such is the duty of the artist.',
+    avatarBg: 'from-amber-600 to-yellow-800',
+    imageUrl: 'https://i.pinimg.com/736x/f7/c4/fd/f7c4fd5501b418e0c2960feae007bce4.jpg'
+  },
+  {
+    id: 'comp_argerich',
+    name: 'Martha Argerich',
+    era: 'Virtuoso Pianist',
+    cost: 5000000,
+    iconName: 'Zap',
+    multiplierType: 'ppc',
+    multiplierValue: 0.75,
+    description: "Argerich's Velocity Virtuosity empowers Click Power by +75%!",
+    quote: 'The music comes through you like lightning through a conductor.',
+    avatarBg: 'from-purple-600 to-indigo-900',
+    imageUrl: 'https://i.pinimg.com/1200x/e8/94/f8/e894f834c827815a455ef85c87317ac7.jpg'
+  },
+  {
+    id: 'comp_beethoven',
+    name: 'Ludwig van Beethoven',
+    era: 'Symphonic Titan',
+    cost: 50000000,
+    iconName: 'Flame',
+    multiplierType: 'global',
+    multiplierValue: 1.0,
+    description: "Beethoven's Eroica Symphony doubles (+100%) ALL total production!",
+    quote: 'Music is a higher revelation than all wisdom and philosophy.',
+    avatarBg: 'from-red-600 to-rose-950',
+    imageUrl: 'https://i.pinimg.com/736x/7a/70/66/7a7066e7cbb75850ebb7a12b6a4e3eb4.jpg'
+  },
+  {
+    id: 'comp_chopin',
+    name: 'Frédéric Chopin',
+    era: 'Romantic Poet',
+    cost: 500000000,
+    iconName: 'Music2',
+    multiplierType: 'pps',
+    multiplierValue: 0.60,
+    description: "Chopin's Nocturne Resonance boosts Auto Generators by +60%!",
+    quote: 'Simplicity is the final achievement after one has played a vast quantity of notes.',
+    avatarBg: 'from-blue-600 to-slate-900',
+    imageUrl: 'https://i.pinimg.com/736x/e2/28/bc/e228bc90aaf49cf1fd5abd71967c2e44.jpg'
+  },
+  {
+    id: 'comp_cash',
+    name: 'Johnny Cash',
+    era: 'Outlaw Legend',
+    cost: 5000000000,
+    iconName: 'Radio',
+    multiplierType: 'crit',
+    multiplierValue: 1.20,
+    description: "Cash's Folsom Prison Rhythm boosts Critical Clicks by +120%!",
+    quote: 'You build on failure. You use it as a stepping stone.',
+    avatarBg: 'from-neutral-800 to-black',
+    imageUrl: 'https://i.pinimg.com/1200x/96/b7/78/96b778a64df5486e762be7fe93f48fe8.jpg'
+  },
+  {
+    id: 'comp_page',
+    name: 'Jimmy Page',
+    era: 'Guitar God',
+    cost: 50000000000,
+    iconName: 'Sparkles',
+    multiplierType: 'global',
+    multiplierValue: 1.50,
+    description: "Page's Stairway Solos grant +150% Global Multiplier!",
+    quote: 'My responsibility is to make music that touches people’s souls.',
+    avatarBg: 'from-amber-500 to-stone-900',
+    imageUrl: 'https://i.pinimg.com/736x/c8/35/3a/c8353a1ea70f548a5a3c58b499c5fff9.jpg'
+  },
+  {
+    id: 'comp_aldrin',
+    name: 'Lily Aldrin',
+    era: 'Artist & Master Character',
+    cost: 120000000000,
+    iconName: 'Sparkles',
+    multiplierType: 'global',
+    multiplierValue: 1.65,
+    description: "Lily's Painting & Kindergarten Passion boosts Global Multiplier by +165%!",
+    quote: "You can't design your life like a building. You just have to live it.",
+    avatarBg: 'from-pink-600 to-rose-950',
+    imageUrl: 'https://i.pinimg.com/736x/91/96/72/919672af23fa25468deddfa952242592.jpg'
+  },
+  {
+    id: 'comp_denver',
+    name: 'John Denver',
+    era: 'Folk & Country Legend',
+    cost: 500000000000,
+    iconName: 'Sun',
+    multiplierType: 'global',
+    multiplierValue: 1.80,
+    description: "Denver's Country Roads Harmony grants +180% Global Multiplier!",
+    quote: 'Music holds people together, brings people together.',
+    avatarBg: 'from-emerald-600 to-teal-950',
+    imageUrl: 'https://i.pinimg.com/736x/2a/8c/b4/2a8cb40c49cfbffc2d5c4e4278db01cb.jpg'
+  },
+  {
+    id: 'comp_nelson',
+    name: 'Willie Nelson',
+    era: 'Outlaw Country Icon',
+    cost: 2000000000000,
+    iconName: 'Sparkles',
+    multiplierType: 'global',
+    multiplierValue: 2.20,
+    description: "Willie's On the Road Again Strumming boosts Global Production by +220%!",
+    quote: "Once you replace negative thoughts with positive ones, you'll start having positive results.",
+    avatarBg: 'from-amber-700 to-orange-950',
+    imageUrl: 'https://i.pinimg.com/736x/d8/5b/bf/d85bbff0f1a42eb524e33fb9beae327c.jpg'
+  },
+  {
+    id: 'comp_yorke',
+    name: 'Thom Yorke',
+    era: 'Alternative Rock Icon',
+    cost: 10000000000000,
+    iconName: 'Radio',
+    multiplierType: 'global',
+    multiplierValue: 2.40,
+    description: "Thom's Experimental Soundscapes grant +240% Global Multiplier!",
+    quote: "Karma police, arrest this man.",
+    avatarBg: 'from-cyan-700 to-slate-950',
+    imageUrl: 'https://i.pinimg.com/736x/1d/05/15/1d0515b5ac622f5e29a7042637fe84aa.jpg'
+  },
+  {
+    id: 'comp_baker',
+    name: 'Chet Baker',
+    era: 'Cool Jazz Trumpet Virtuoso',
+    cost: 25000000000000,
+    iconName: 'Radio',
+    multiplierType: 'global',
+    multiplierValue: 2.45,
+    description: "Chet's Melancholic Trumpet Solos grant +245% Global Multiplier!",
+    quote: "My funny valentine, sweet comic valentine...",
+    avatarBg: 'from-blue-800 to-indigo-950',
+    imageUrl: 'https://i.pinimg.com/736x/c1/fc/0d/c1fc0d3db1b745182cb319bd1856db51.jpg'
+  },
+  {
+    id: 'comp_mercury',
+    name: 'Freddie Mercury',
+    era: 'Rock Vocal Virtuoso',
+    cost: 50000000000000,
+    iconName: 'Sparkles',
+    multiplierType: 'global',
+    multiplierValue: 2.50,
+    description: "Freddie's Operatic Vocal Range grants +250% Global Multiplier!",
+    quote: "I won't be a rock star. I will be a legend.",
+    avatarBg: 'from-purple-600 to-yellow-950',
+    imageUrl: 'https://i.pinimg.com/1200x/ee/32/27/ee32272448ef2fc75ce9d28327906457.jpg'
+  },
+  {
+    id: 'comp_stinson',
+    name: 'Barney Stinson',
+    era: 'Legen-wait-for-it-dary Master',
+    cost: 100000000000000,
+    iconName: 'Zap',
+    multiplierType: 'global',
+    multiplierValue: 2.50,
+    description: "Barney's Playbook & Suit-Up Power boosts Global Multiplier by +250%!",
+    quote: "When I'm sad, I stop being sad and be awesome instead. True story.",
+    avatarBg: 'from-amber-500 to-yellow-950',
+    imageUrl: 'https://i.pinimg.com/736x/b6/58/3c/b6583c966c58c6ff0a3a8bea0aed1a3e.jpg'
+  },
+  {
+    id: 'comp_vivaldi',
+    name: 'Antonio Vivaldi',
+    era: 'Baroque Four Seasons Master',
+    cost: 250000000000000,
+    iconName: 'Music2',
+    multiplierType: 'global',
+    multiplierValue: 2.60,
+    description: "Vivaldi's Four Seasons Violin Concertos grant +260% Global Multiplier!",
+    quote: "There are no words, it's only music there.",
+    avatarBg: 'from-amber-600 to-red-900',
+    imageUrl: 'https://i.pinimg.com/1200x/4d/c2/81/4dc28187398428e369986d780726413d.jpg'
+  },
+  {
+    id: 'comp_mosby',
+    name: 'Ted Mosby',
+    era: 'Romantic Architect & Master',
+    cost: 1000000000000000,
+    iconName: 'Compass',
+    multiplierType: 'global',
+    multiplierValue: 3.00,
+    description: "Ted's Architecture & Blue French Horn Serenade grants +300% Global Multiplier!",
+    quote: "Right place at the right time, doing the right thing.",
+    avatarBg: 'from-blue-600 to-indigo-950',
+    imageUrl: 'https://i.pinimg.com/736x/24/07/b8/2407b8b2e3bba49934f2786853c24380.jpg'
+  },
+  {
+    id: 'comp_fletcher',
+    name: 'Not Quite My Tempo',
+    era: 'Disciplinarian Master Conductor',
+    cost: 5000000000000000,
+    iconName: 'Zap',
+    multiplierType: 'global',
+    multiplierValue: 3.05,
+    description: "Fletcher's Relentless Discipline boosts Global Production by +305%!",
+    quote: "There are no two words in the English language more harmful than good job.",
+    avatarBg: 'from-neutral-900 to-red-950',
+    imageUrl: 'https://i.pinimg.com/1200x/30/91/a7/3091a758ab9c8c4cd11a0df2386c74c8.jpg'
+  },
+  {
+    id: 'comp_pacino',
+    name: 'Al Pacino',
+    era: 'Cinematic Legend & Godfather',
+    cost: 25000000000000000,
+    iconName: 'Flame',
+    multiplierType: 'global',
+    multiplierValue: 3.20,
+    description: "Al Pacino's Legendary Monologues & Godfather Presence boost Global Production by +320%!",
+    quote: "Say hello to my little friend!",
+    avatarBg: 'from-stone-800 to-neutral-950',
+    imageUrl: 'https://i.pinimg.com/736x/c8/e3/ca/c8e3ca3f307542d3ad64ab1fc7af66f8.jpg'
+  },
+  {
+    id: 'comp_scherbatsky',
+    name: 'Robin Scherbatsky',
+    era: 'TV Anchor & Pop Icon',
+    cost: 100000000000000000,
+    iconName: 'Radio',
+    multiplierType: 'global',
+    multiplierValue: 3.50,
+    description: "Robin's Broadcast & 'Let's Go To The Mall' hit boosts Global Production by +350%!",
+    quote: "Everybody come and play, throw every last care away!",
+    avatarBg: 'from-rose-600 to-red-950',
+    imageUrl: 'https://i.pinimg.com/736x/db/04/c2/db04c28a4efce0837f65cf389fae8ac7.jpg'
+  },
+  {
+    id: 'comp_camus',
+    name: 'Albert Camus',
+    era: 'Absurdist Philosopher & Author',
+    cost: 500000000000000000,
+    iconName: 'BookOpen',
+    multiplierType: 'global',
+    multiplierValue: 3.60,
+    description: "Camus's Myth of Sisyphus & Rebel Philosophy grant +360% Global Production!",
+    quote: "One must imagine Sisyphus happy.",
+    avatarBg: 'from-zinc-700 to-neutral-900',
+    imageUrl: 'https://i.pinimg.com/1200x/f4/bd/7d/f4bd7d559473aad41816615e84fc89b6.jpg'
+  },
+  {
+    id: 'comp_dostoyevsky',
+    name: 'Fyodor Dostoyevsky',
+    era: 'Literary & Philosophical Giant',
+    cost: 2000000000000000000,
+    iconName: 'BookOpen',
+    multiplierType: 'global',
+    multiplierValue: 4.00,
+    description: "Dostoyevsky's Psychological Masterpieces boost Global Production by +400%!",
+    quote: "To live without Hope is to Cease to live.",
+    avatarBg: 'from-slate-800 to-stone-950',
+    imageUrl: 'https://i.pinimg.com/736x/d8/c5/ef/d8c5efd1697c820cdb74dd854498ed65.jpg'
+  }
+];

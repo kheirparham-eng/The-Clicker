@@ -1,0 +1,63 @@
+{
+  "entities": {
+    "UserSave": {
+      "title": "User Game Save",
+      "description": "User game state data synced across sessions in cloud storage",
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "points": {
+          "type": "number"
+        },
+        "lifetimePoints": {
+          "type": "number"
+        },
+        "itemsOwned": {
+          "type": "object"
+        },
+        "upgradesPurchased": {
+          "type": "array"
+        },
+        "achievementsUnlocked": {
+          "type": "array"
+        },
+        "quantumRelics": {
+          "type": "number"
+        },
+        "lastSaveTime": {
+          "type": "number"
+        },
+        "unlockedComposers": {
+          "type": "array"
+        },
+        "equippedComposer": {
+          "type": "string"
+        },
+        "equippedTheme": {
+          "type": "string"
+        },
+        "unlockedThemes": {
+          "type": "array"
+        },
+        "stats": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "username",
+        "points"
+      ]
+    }
+  },
+  "firestore": {
+    "/saves/{username}": {
+      "schema": {
+        "$ref": "#/entities/UserSave"
+      },
+      "description": "Stores user game saves indexed by username"
+    }
+  }
+}

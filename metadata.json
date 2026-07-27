@@ -1,0 +1,6 @@
+{
+  "name": "2D Incremental Clicker Game",
+  "description": "A dark cyberpunk 2D incremental clicker web game with user authentication, persistent progress saving, extensive shop upgrades, particle effects, web audio SFX, lucky frenzy drops, and achievements.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
