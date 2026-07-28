@@ -173,6 +173,223 @@ class SoundManager {
         osc2.start(now);
         osc1.stop(now + 0.1);
         osc2.stop(now + 0.1);
+      } else if (sfxStyle === 'lofi_vinyl') {
+        // Warm Lofi Rhodes / Vinyl Chord
+        const freqs = [220.00, 277.18, 329.63, 415.30]; // Amaj7 chord
+        const filter = this.ctx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(750, now);
+
+        freqs.forEach((freq, idx) => {
+          const osc = this.ctx!.createOscillator();
+          const gain = this.ctx!.createGain();
+          const tOffset = now + idx * 0.01;
+
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(freq, tOffset);
+
+          gain.gain.setValueAtTime(this.volume * 0.2, tOffset);
+          gain.gain.exponentialRampToValueAtTime(0.001, tOffset + 0.28);
+
+          osc.connect(filter);
+          filter.connect(gain);
+          gain.connect(this.ctx!.destination);
+
+          osc.start(tOffset);
+          osc.stop(tOffset + 0.28);
+        });
+      } else if (sfxStyle === 'cyber_beam') {
+        // Cyber Synthwave Saw Bass Sweep
+        const osc = this.ctx.createOscillator();
+        const filter = this.ctx.createBiquadFilter();
+        const gain = this.ctx.createGain();
+
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(160, now);
+        osc.frequency.exponentialRampToValueAtTime(45, now + 0.12);
+
+        filter.type = 'lowpass';
+        filter.Q.setValueAtTime(6, now);
+        filter.frequency.setValueAtTime(2200, now);
+        filter.frequency.exponentialRampToValueAtTime(250, now + 0.12);
+
+        gain.gain.setValueAtTime(this.volume * 0.45, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.13);
+
+        osc.connect(filter);
+        filter.connect(gain);
+        gain.connect(this.ctx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.13);
+      } else if (sfxStyle === 'crystal_glass') {
+        // Celestial Crystalline Glass Chime
+        const freqs = [1046.50, 1567.98, 2093.00, 3135.96]; // C6, G6, C7, G7
+        freqs.forEach((freq, idx) => {
+          const osc = this.ctx!.createOscillator();
+          const gain = this.ctx!.createGain();
+          const tOffset = now + idx * 0.008;
+
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, tOffset);
+
+          gain.gain.setValueAtTime(this.volume * 0.22, tOffset);
+          gain.gain.exponentialRampToValueAtTime(0.001, tOffset + 0.25);
+
+          osc.connect(gain);
+          gain.connect(this.ctx!.destination);
+
+          osc.start(tOffset);
+          osc.stop(tOffset + 0.25);
+        });
+      } else if (sfxStyle === 'oriental_tar') {
+        // Persian Setar / Tar Resonant String Tremolo
+        const notes = [293.66, 440.00, 587.33]; // D4, A4, D5
+        notes.forEach((freq, i) => {
+          const osc = this.ctx!.createOscillator();
+          const filter = this.ctx!.createBiquadFilter();
+          const gain = this.ctx!.createGain();
+
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(freq, now + i * 0.012);
+
+          filter.type = 'bandpass';
+          filter.frequency.setValueAtTime(freq * 1.5, now);
+          filter.Q.setValueAtTime(4, now);
+
+          gain.gain.setValueAtTime(this.volume * 0.3, now + i * 0.012);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.012 + 0.22);
+
+          osc.connect(filter);
+          filter.connect(gain);
+          gain.connect(this.ctx!.destination);
+
+          osc.start(now + i * 0.012);
+          osc.stop(now + i * 0.012 + 0.22);
+        });
+      } else if (sfxStyle === 'arcade_coin') {
+        // Cosmic Arcade Coin Drop
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(659.25, now); // E5
+        osc.frequency.setValueAtTime(987.77, now + 0.04); // B5
+
+        gain.gain.setValueAtTime(this.volume * 0.35, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.12);
+      } else if (sfxStyle === 'heavy_sub_thump') {
+        // Cyber 808 Sub Kick Thump
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(170, now);
+        osc.frequency.exponentialRampToValueAtTime(32, now + 0.09);
+
+        gain.gain.setValueAtTime(this.volume * 0.6, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.14);
+
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.14);
+      } else if (sfxStyle === 'harpsichord_baroque') {
+        // Baroque Harpsichord Bright Pluck
+        const osc1 = this.ctx.createOscillator();
+        const osc2 = this.ctx.createOscillator();
+        const filter = this.ctx.createBiquadFilter();
+        const gain = this.ctx.createGain();
+
+        osc1.type = 'sawtooth';
+        osc2.type = 'square';
+        osc1.frequency.setValueAtTime(523.25, now); // C5
+        osc2.frequency.setValueAtTime(659.25, now); // E5
+
+        filter.type = 'highpass';
+        filter.frequency.setValueAtTime(600, now);
+
+        gain.gain.setValueAtTime(this.volume * 0.3, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+
+        osc1.connect(filter);
+        osc2.connect(filter);
+        filter.connect(gain);
+        gain.connect(this.ctx.destination);
+
+        osc1.start(now);
+        osc2.start(now);
+        osc1.stop(now + 0.12);
+        osc2.stop(now + 0.12);
+      } else if (sfxStyle === 'zen_drop') {
+        // Zen Liquid Water Drop
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(780, now);
+        osc.frequency.exponentialRampToValueAtTime(280, now + 0.07);
+
+        gain.gain.setValueAtTime(this.volume * 0.45, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.08);
+      } else if (sfxStyle === 'space_laser_beam') {
+        // Cosmic Warp Beam Laser
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(250, now);
+        osc.frequency.exponentialRampToValueAtTime(1750, now + 0.08);
+
+        gain.gain.setValueAtTime(this.volume * 0.35, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.09);
+
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.09);
+      } else if (sfxStyle === '80s_synth_lead') {
+        // Retro 80s Detuned Synth Stab
+        const osc1 = this.ctx.createOscillator();
+        const osc2 = this.ctx.createOscillator();
+        const filter = this.ctx.createBiquadFilter();
+        const gain = this.ctx.createGain();
+
+        osc1.type = 'sawtooth';
+        osc2.type = 'sawtooth';
+        osc1.frequency.setValueAtTime(440, now); // A4
+        osc2.frequency.setValueAtTime(444, now); // Slightly detuned
+
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(1800, now);
+        filter.frequency.exponentialRampToValueAtTime(400, now + 0.14);
+
+        gain.gain.setValueAtTime(this.volume * 0.38, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+
+        osc1.connect(filter);
+        osc2.connect(filter);
+        filter.connect(gain);
+        gain.connect(this.ctx.destination);
+
+        osc1.start(now);
+        osc2.start(now);
+        osc1.stop(now + 0.15);
+        osc2.stop(now + 0.15);
       } else {
         // Default Neural Synth Tap
         const osc = this.ctx.createOscillator();

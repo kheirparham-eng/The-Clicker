@@ -278,5 +278,95 @@ export const COSMETICS: CosmeticItem[] = [
     iconName: 'Music',
     description: 'Warm harmonic string pluck resonance.',
     previewColor: '#10b981'
+  },
+  {
+    id: 'lofi_vinyl',
+    name: 'Lofi Chill Rhodes',
+    category: 'sfx',
+    cost: 2500000,
+    iconName: 'Disc',
+    description: 'Smooth, warm Lofi vinyl Rhodes major 7th chord chime.',
+    previewColor: '#f59e0b'
+  },
+  {
+    id: 'cyber_beam',
+    name: 'Cyber Bass Stinger',
+    category: 'sfx',
+    cost: 10000000,
+    iconName: 'Activity',
+    description: 'Resonant synthwave saw bass drop with lowpass sweep.',
+    previewColor: '#ec4899'
+  },
+  {
+    id: 'crystal_glass',
+    name: 'Celestial Glass Chime',
+    category: 'sfx',
+    cost: 50000000,
+    iconName: 'Sparkles',
+    description: 'Shimmering crystalline glass bell chord with high overtones.',
+    previewColor: '#38bdf8'
+  },
+  {
+    id: 'oriental_tar',
+    name: 'Persian Setar Tremolo',
+    category: 'sfx',
+    cost: 250000000,
+    iconName: 'Flame',
+    description: 'Acoustic oriental plucked string tremolo with wooden resonance.',
+    previewColor: '#f97316'
+  },
+  {
+    id: 'arcade_coin',
+    name: 'Cosmic Coin Chime',
+    category: 'sfx',
+    cost: 1000000000,
+    iconName: 'Coins',
+    description: 'Retro 8-bit dual ascending coin drop chime.',
+    previewColor: '#eab308'
+  },
+  {
+    id: 'heavy_sub_thump',
+    name: '808 Sub-Bass Thump',
+    category: 'sfx',
+    cost: 5000000000,
+    iconName: 'Volume2',
+    description: 'Deep punchy 808 sub-bass kick frequency drop.',
+    previewColor: '#ef4444'
+  },
+  {
+    id: 'harpsichord_baroque',
+    name: 'Baroque Harpsichord',
+    category: 'sfx',
+    cost: 25000000000,
+    iconName: 'Music2',
+    description: 'Bright dual-harmonic metallic harpsichord pluck.',
+    previewColor: '#a855f7'
+  },
+  {
+    id: 'zen_drop',
+    name: 'Zen Liquid Water Drop',
+    category: 'sfx',
+    cost: 100000000000,
+    iconName: 'Droplet',
+    description: 'Calming organic liquid sine water drop pitch glide.',
+    previewColor: '#06b6d4'
+  },
+  {
+    id: 'space_laser_beam',
+    name: 'Cosmic Warp Laser',
+    category: 'sfx',
+    cost: 500000000000,
+    iconName: 'Zap',
+    description: 'Futuristic ascending pitch warp laser beam.',
+    previewColor: '#10b981'
+  },
+  {
+    id: '80s_synth_lead',
+    name: '80s Synthwave Stab',
+    category: 'sfx',
+    cost: 2500000000000,
+    iconName: 'Radio',
+    description: 'Retro detuned dual-sawtooth 80s synth lead stab.',
+    previewColor: '#818cf8'
   }
 ];

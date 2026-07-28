@@ -15,14 +15,19 @@ import { PrestigeModal } from './components/PrestigeModal';
 import { StatsModal } from './components/StatsModal';
 import { MusicianAvatarWidget } from './components/MusicianAvatarWidget';
 import { CheatPage } from './components/CheatPage';
+import { AdminPage } from './components/AdminPage';
 
 import * as Icons from 'lucide-react';
 
 export default function App() {
-  // Client-side router state for /cheat page
+  // Client-side router state for /cheat and secret /parham admin page
   const [currentRoute, setCurrentRoute] = useState<string>(() => {
     const path = window.location.pathname;
     const hash = window.location.hash;
+    const search = window.location.search;
+    if (path.includes('/parham') || hash.includes('parham') || search.includes('parham')) {
+      return '/parham';
+    }
     if (path.endsWith('/cheat') || hash === '#/cheat' || hash === '#cheat' || hash.includes('cheat')) {
       return '/cheat';
     }
@@ -33,7 +38,10 @@ export default function App() {
     const handleLocationChange = () => {
       const path = window.location.pathname;
       const hash = window.location.hash;
-      if (path.endsWith('/cheat') || hash === '#/cheat' || hash === '#cheat' || hash.includes('cheat')) {
+      const search = window.location.search;
+      if (path.includes('/parham') || hash.includes('parham') || search.includes('parham')) {
+        setCurrentRoute('/parham');
+      } else if (path.endsWith('/cheat') || hash === '#/cheat' || hash === '#cheat' || hash.includes('cheat')) {
         setCurrentRoute('/cheat');
       } else {
         setCurrentRoute('/');
@@ -62,7 +70,7 @@ export default function App() {
   const navigateToHome = () => {
     setCurrentRoute('/');
     try {
-      const targetPath = window.location.pathname.replace(/\/cheat\/?$/, '') || '/';
+      const targetPath = window.location.pathname.replace(/\/(cheat|parham)\/?$/, '') || '/';
       window.history.pushState({}, '', targetPath);
     } catch {
       window.location.hash = '#/';
@@ -453,6 +461,16 @@ export default function App() {
     matrix_theme: 'theme-matrix',
   };
   const activeThemeClass = themeClassMap[gameState.equippedTheme || 'cyberpunk'] || 'cyber-grid';
+
+  if (currentRoute === '/parham') {
+    return (
+      <AdminPage
+        onReturnToGame={navigateToHome}
+        currentGameState={gameState}
+        setGameState={setGameState}
+      />
+    );
+  }
 
   if (currentRoute === '/cheat') {
     return (

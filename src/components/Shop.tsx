@@ -566,7 +566,18 @@ export const Shop: React.FC<ShopProps> = ({
                   </div>
 
                   {/* Cosmetic Action Buttons */}
-                  <div className="shrink-0 flex items-center gap-1">
+                  <div className="shrink-0 flex items-center gap-1.5">
+                    {cosmetic.category === 'sfx' && (
+                      <button
+                        type="button"
+                        onClick={() => audio.playClickSound(cosmetic.id)}
+                        className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-cyan-300 hover:text-cyan-200 transition-all active:scale-95"
+                        title="Test Sound Effect"
+                      >
+                        <Icons.Volume2 className="w-3.5 h-3.5" />
+                      </button>
+                    )}
+
                     {isEquipped ? (
                       <div className="px-2.5 py-1.5 rounded bg-fuchsia-950/80 border border-fuchsia-500/40 text-fuchsia-300 text-[10px] font-mono font-bold flex items-center gap-1">
                         <Icons.Check className="w-3.5 h-3.5 text-fuchsia-400" />
@@ -576,7 +587,7 @@ export const Shop: React.FC<ShopProps> = ({
                       <button
                         onClick={() => {
                           onEquipCosmetic(cosmetic.category, cosmetic.id);
-                          audio.playClickSound(gameState.equippedSfx);
+                          audio.playClickSound(cosmetic.id);
                         }}
                         className="px-2.5 py-1.5 rounded bg-fuchsia-900/50 hover:bg-fuchsia-800/80 border border-fuchsia-500/40 text-fuchsia-200 text-[10px] font-mono font-bold transition-all shadow-[0_0_8px_rgba(217,70,239,0.2)] active:scale-95"
                       >
