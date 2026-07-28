@@ -14,10 +14,60 @@ import { OfflineModal } from './components/OfflineModal';
 import { PrestigeModal } from './components/PrestigeModal';
 import { StatsModal } from './components/StatsModal';
 import { MusicianAvatarWidget } from './components/MusicianAvatarWidget';
+import { CheatPage } from './components/CheatPage';
 
 import * as Icons from 'lucide-react';
 
 export default function App() {
+  // Client-side router state for /cheat page
+  const [currentRoute, setCurrentRoute] = useState<string>(() => {
+    const path = window.location.pathname;
+    const hash = window.location.hash;
+    if (path.endsWith('/cheat') || hash === '#/cheat' || hash === '#cheat' || hash.includes('cheat')) {
+      return '/cheat';
+    }
+    return '/';
+  });
+
+  useEffect(() => {
+    const handleLocationChange = () => {
+      const path = window.location.pathname;
+      const hash = window.location.hash;
+      if (path.endsWith('/cheat') || hash === '#/cheat' || hash === '#cheat' || hash.includes('cheat')) {
+        setCurrentRoute('/cheat');
+      } else {
+        setCurrentRoute('/');
+      }
+    };
+
+    window.addEventListener('popstate', handleLocationChange);
+    window.addEventListener('hashchange', handleLocationChange);
+    return () => {
+      window.removeEventListener('popstate', handleLocationChange);
+      window.removeEventListener('hashchange', handleLocationChange);
+    };
+  }, []);
+
+  const navigateToCheat = () => {
+    setCurrentRoute('/cheat');
+    try {
+      const basePath = window.location.pathname.replace(/\/cheat\/?$/, '') || '';
+      const targetPath = `${basePath.endsWith('/') ? basePath.slice(0, -1) : basePath}/cheat`;
+      window.history.pushState({}, '', targetPath);
+    } catch {
+      window.location.hash = '#/cheat';
+    }
+  };
+
+  const navigateToHome = () => {
+    setCurrentRoute('/');
+    try {
+      const targetPath = window.location.pathname.replace(/\/cheat\/?$/, '') || '/';
+      window.history.pushState({}, '', targetPath);
+    } catch {
+      window.location.hash = '#/';
+    }
+  };
   // Auth & Username state
   const [activeUsername, setActiveUsername] = useState<string | null>(() => AuthManager.getCurrentUsername());
   const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(() => !AuthManager.getCurrentUsername());
@@ -404,6 +454,16 @@ export default function App() {
   };
   const activeThemeClass = themeClassMap[gameState.equippedTheme || 'cyberpunk'] || 'cyber-grid';
 
+  if (currentRoute === '/cheat') {
+    return (
+      <CheatPage
+        gameState={gameState}
+        setGameState={setGameState}
+        onReturnToGame={navigateToHome}
+      />
+    );
+  }
+
   return (
     <div className={`relative min-h-screen w-full ${activeThemeClass} text-slate-100 flex flex-col font-mono overflow-x-hidden select-none scanlines transition-colors duration-500`}>
       {/* Lightweight Ambient Background Glow */}
@@ -612,17 +672,25 @@ export default function App() {
             sfxStyle={gameState.equippedSfx || 'synth'}
           />
 
-          {/* Bottom Telemetry Terminal Feed */}
-          <div className="w-full mt-2 p-2 rounded bg-[#060911] border border-slate-800/80 text-[10px] font-mono text-slate-400 flex items-center justify-between">
+          {/* Bottom Telemetry Terminal Feed (Subtle secret trigger) */}
+          <div
+            onClick={navigateToCheat}
+            className="w-full mt-2 p-2 rounded bg-[#060911]/90 border border-slate-800/80 text-[10px] font-mono text-slate-400 flex items-center justify-between cursor-pointer select-none hover:text-slate-200 transition-colors"
+            title="System Telemetry Feed"
+          >
             <div className="flex items-center gap-2 truncate">
-              <span className="text-cyan-400 font-bold">[SYS_LOG]</span>
-              <span className="text-slate-300 truncate">
+              <span className="text-cyan-500 font-bold">
+                [SYS_LOG]
+              </span>
+              <span className="text-slate-400 truncate">
                 {activeBuffs.length > 0
                   ? `Active Buff: ${activeBuffs[0].name} (${activeBuffs[0].remainingSeconds.toFixed(0)}s remaining)`
-                  : `Core online. Generated ${formatNumber(gameState.stats.lifetimePoints || 0)} lifetime energy.`}
+                  : `Core online. Quantum matrix state synchronized.`}
               </span>
             </div>
-            <span className="text-[9px] text-emerald-400 shrink-0 ml-2">● LIVE</span>
+            <span className="text-[9px] text-slate-500 shrink-0 ml-2">
+              ● ONLINE
+            </span>
           </div>
         </div>
 

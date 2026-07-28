@@ -174,6 +174,36 @@ export const AUTO_GENERATORS: ShopItem[] = [
     iconName: 'Clock',
     description: 'Siphons future energy outputs directly into current timeline.',
   },
+  {
+    id: 'auto_hyper_reactor',
+    name: 'Hyper-Dimensional Reactor',
+    category: 'auto',
+    baseCost: 120000000000,
+    costMultiplier: 1.15,
+    power: 150000000,
+    iconName: 'Zap',
+    description: 'Hyper-dimensional core pulsing +150M passive energy per second.',
+  },
+  {
+    id: 'auto_galactic_core',
+    name: 'Galactic Core Network',
+    category: 'auto',
+    baseCost: 1000000000000,
+    costMultiplier: 1.15,
+    power: 1000000000,
+    iconName: 'Globe',
+    description: 'Siphons raw galactic central energy delivering +1B passive energy per second.',
+  },
+  {
+    id: 'auto_multiverse_siphon',
+    name: 'Multiverse Siphon Array',
+    category: 'auto',
+    baseCost: 12000000000000,
+    costMultiplier: 1.15,
+    power: 10000000000,
+    iconName: 'Sparkles',
+    description: 'Multi-realm energy funnel channeling +10B passive energy per second.',
+  },
 ];
 
 export const SPECIAL_UPGRADES: SpecialUpgrade[] = [

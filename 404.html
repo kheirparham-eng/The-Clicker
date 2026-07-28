@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      // Single Page Apps for GitHub Pages
+      // Redirects 404 routes back to index.html with a query or hash
+      (function() {
+        var pathSegmentsToKeep = 1; // 1 for repo name e.g. /The-Clicker/
+        var l = window.location;
+        var repoPath = l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/');
+        var route = l.pathname.slice(repoPath.length);
+        if (route) {
+          l.replace(repoPath + '/#' + route + l.search + l.hash);
+        } else {
+          l.replace(repoPath + '/' + l.search + l.hash);
+        }
+      })();
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

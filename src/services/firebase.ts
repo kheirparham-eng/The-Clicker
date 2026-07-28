@@ -62,9 +62,15 @@ export async function testFirestoreConnection(): Promise<boolean> {
     await getDocFromServer(doc(db, 'saves', 'connection_test'));
     console.log('Firestore connection verified online.');
     return true;
-  } catch (error) {
-    if (error instanceof Error && error.message.includes('the client is offline')) {
-      console.warn('Firestore client is offline or uninitialized.');
+  } catch (error: any) {
+    if (
+      error instanceof Error &&
+      (error.message.includes('the client is offline') ||
+        error.message.includes('unavailable') ||
+        error.message.includes('Could not reach Cloud Firestore backend') ||
+        (error as { code?: string })?.code === 'unavailable')
+    ) {
+      console.warn('Firestore operating in offline mode or network delayed.');
     } else {
       console.log('Firestore initialized.');
     }
@@ -72,4 +78,4 @@ export async function testFirestoreConnection(): Promise<boolean> {
   }
 }
 
-testFirestoreConnection();
+testFirestoreConnection().catch(() => {});
