@@ -21,31 +21,22 @@ import * as Icons from 'lucide-react';
 
 export default function App() {
   // Client-side router state for /cheat and secret /parham admin page
-  const [currentRoute, setCurrentRoute] = useState<string>(() => {
-    const path = window.location.pathname;
-    const hash = window.location.hash;
-    const search = window.location.search;
-    if (path.includes('/parham') || hash.includes('parham') || search.includes('parham')) {
+  const getDetectedRoute = () => {
+    const fullUrl = (window.location.pathname + window.location.hash + window.location.search).toLowerCase();
+    if (fullUrl.includes('parham')) {
       return '/parham';
     }
-    if (path.endsWith('/cheat') || hash === '#/cheat' || hash === '#cheat' || hash.includes('cheat')) {
+    if (fullUrl.includes('cheat')) {
       return '/cheat';
     }
     return '/';
-  });
+  };
+
+  const [currentRoute, setCurrentRoute] = useState<string>(getDetectedRoute);
 
   useEffect(() => {
     const handleLocationChange = () => {
-      const path = window.location.pathname;
-      const hash = window.location.hash;
-      const search = window.location.search;
-      if (path.includes('/parham') || hash.includes('parham') || search.includes('parham')) {
-        setCurrentRoute('/parham');
-      } else if (path.endsWith('/cheat') || hash === '#/cheat' || hash === '#cheat' || hash.includes('cheat')) {
-        setCurrentRoute('/cheat');
-      } else {
-        setCurrentRoute('/');
-      }
+      setCurrentRoute(getDetectedRoute());
     };
 
     window.addEventListener('popstate', handleLocationChange);
